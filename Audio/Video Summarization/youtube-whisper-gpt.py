@@ -62,7 +62,7 @@ def chunk_audio(filename, segment_length, output_dir):
 
     for i in range(num_segments):
         start = i * segment_length * sr
-        end = (i + 1) * segment_length * sr
+        end = min((i + 1) * segment_length * sr, duration * sr)
         segment = audio[start:end]
         sf.write(os.path.join(output_dir, f"segment_{i}.wav"), segment, sr)
 
